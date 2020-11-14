@@ -14,3 +14,15 @@ for cl in myList:
     curImg = cv2.imread(f"{path}/{cl}")
     images.append(curImg)
     classNames.append(os.path.splitext(cl)[0])
+
+# Encoding process
+def find_encodings(list_of_images):
+    encode_list = []
+    for img in list_of_images:
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        encode = fr.face_encodings(img)[0]
+        encode_list.append(encode)
+    return encode_list
+
+encode_list_known = find_encodings(images)
+print("Encoding completed!")
