@@ -40,7 +40,7 @@ def mark_attendance(name_of_person):
         if name_of_person not in list_of_names:
             now = datetime.now()
             date_string = now.strftime("%H:%M:%S")
-            f.writelines(f"\n{name_of_person}, {dateString}")
+            f.writelines(f"\n{name_of_person}, {date_string}")
 
 
 # capturing the webcam
