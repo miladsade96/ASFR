@@ -3,6 +3,8 @@ import numpy as np
 import cv2
 import face_recognition as fr
 import os
+from datetime import datetime
+
 
 # loading images that has located in imageAttendance directory
 path = "imagesAttendance"
