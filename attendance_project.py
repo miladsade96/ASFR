@@ -30,6 +30,19 @@ encode_list_known = find_encodings(images)
 print("Encoding completed!")
 
 
+def mark_attendance(name_of_person):
+    with open("attendance.csv", "r+") as f:
+        my_data_list = f.readlines()
+        list_of_names = []
+        for line in my_data_list:
+            entry = line.split(", ")
+            list_of_names.append(entry[0])
+        if name_of_person not in list_of_names:
+            now = datetime.now()
+            date_string = now.strftime("%H:%M:%S")
+            f.writelines(f"\n{name_of_person}, {dateString}")
+
+
 # capturing the webcam
 cap = cv2.VideoCapture(0)
 while True:
