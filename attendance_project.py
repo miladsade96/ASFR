@@ -6,16 +6,22 @@ import os
 from datetime import datetime
 
 
-# loading images that has located in imageAttendance directory
-path = "imagesAttendance"
-images = []
-classNames = []
-myList = os.listdir(path)
-for cl in myList:
-    # current image
-    curImg = cv2.imread(f"{path}/{cl}")
-    images.append(curImg)
-    classNames.append(os.path.splitext(cl)[0])
+
+def image_loader(path: str) -> list:
+    """
+    Loading images from given directory
+    :param path: str, address of images directory
+    :return: list, images class names
+    """
+    images = []
+    class_names = []
+    list_of_contents = os.listdir(path)
+    for cl in list_of_contents:
+        current_image = cv2.imread(f"{path}/{cl}")
+        images.append(current_image)
+        class_names.append(os.path.splitext(cl)[0])
+    return class_names
+
 
 # Encoding process
 def find_encodings(list_of_images):
