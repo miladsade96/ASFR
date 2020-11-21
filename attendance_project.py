@@ -25,16 +25,18 @@ def image_loader(path: str) -> Tuple[List[str], list]:
 
 
 # Encoding process
-def find_encodings(list_of_images):
-    encode_list = []
+def find_encodings(list_of_images: list) -> list:
+    """
+    find encodings for each image located in the given list
+    :param list_of_images: list, all images
+    :return: list of encode values
+    """
+    encodings_list = [] # images encodings will store here
     for img in list_of_images:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         encode = fr.face_encodings(img)[0]
-        encode_list.append(encode)
-    return encode_list
-
-encode_list_known = find_encodings(images)
-print("Encoding completed!")
+        encodings_list.append(encode)
+    return encodings_list
 
 
 def mark_attendance(name_of_person):
