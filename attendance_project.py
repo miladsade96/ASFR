@@ -39,7 +39,13 @@ def find_encodings(list_of_images: list) -> list:
     return encodings_list
 
 
-def mark_attendance(name_of_person):
+def mark_attendance(name_of_person: str) -> None:
+    """
+    open up the csv file and insert the name and arrive time to file
+    :param name_of_person: str, name of the person whom recognized
+                            by the algorithm
+    :return: None
+    """
     with open("attendance.csv", "r+") as f:
         my_data_list = f.readlines()
         list_of_names = []
