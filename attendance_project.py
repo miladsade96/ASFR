@@ -91,3 +91,7 @@ def main():
                 mark_attendance(name)
         cv2.imshow("Webcam", img)
         cv2.waitKey(1)
+
+
+if __name__ == '__main__':
+    main()
