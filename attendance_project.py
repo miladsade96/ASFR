@@ -8,7 +8,7 @@ from typing import Tuple, List
 
 
 
-def image_loader(path: str) -> list:
+def image_loader(path: str) -> Tuple[List[str], list]:
     """
     Loading images from given directory
     :param path: str, address of images directory
@@ -21,7 +21,7 @@ def image_loader(path: str) -> list:
         current_image = cv2.imread(f"{path}/{cl}")
         images.append(current_image)
         class_names.append(os.path.splitext(cl)[0])
-    return class_names
+    return class_names, images
 
 
 # Encoding process
