@@ -4,6 +4,7 @@ import cv2
 import face_recognition as fr
 import os
 from datetime import datetime
+from typing import Tuple, List
 
 
 
