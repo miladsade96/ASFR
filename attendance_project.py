@@ -58,26 +58,36 @@ def mark_attendance(name_of_person: str) -> None:
             f.writelines(f"\n{name_of_person}, {date_string}")
 
 
-# capturing the webcam
-cap = cv2.VideoCapture(0)
-while True:
-    success, img = cap.read()
-    img_small = cv2.resize(img, (0, 0), None, 0.25, 0.25)
-    img_small = cv2.cvtColor(img_small, cv2.COLOR_BGR2RGB)
-    faces_in_current_frame = fr.face_locations(img_small)
-    encodings_in_current_frame = fr.face_encodings(img_small, faces_in_current_frame)
+def main():
+    """
+    The main function to run the program
+    :return: None
+    """
+    path = "imagesAttendance"
+    cl_names, images_list = image_loader(path)
+    known_faces_encodes = find_encodings(images_list)
+    print("Encoding finished.")
 
-    for encodeFaces, faceLoc in zip(encodings_in_current_frame, faces_in_current_frame):
-        matches = fr.compare_faces(encode_list_known, encodeFaces)
-        faceDistance = fr.face_distance(encode_list_known, encodeFaces)
-        matchIndex = np.argmin(faceDistance)
+    # capturing the webcam
+    cap = cv2.VideoCapture(0)
+    while True:
+        success, img = cap.read()
+        img_small = cv2.resize(img, (0, 0), None, 0.25, 0.25)
+        img_small = cv2.cvtColor(img_small, cv2.COLOR_BGR2RGB)
+        faces_in_current_frame = fr.face_locations(img_small)
+        encodings_in_current_frame = fr.face_encodings(img_small, faces_in_current_frame)
 
-        if matches[matchIndex]:
-            name = classNames[int(matchIndex)].upper()
-            y_1, x_2, y_2, x_1 = faceLoc
-            y_1, x_2, y_2, x_1 = y_1 * 4, x_2 * 4, y_2 * 4, x_1 * 4
-            cv2.rectangle(img, (x_1, y_1), (x_2, y_2), (0, 255, 0), 2)
-            cv2.putText(img, name, (x_1 + 6, y_2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
-            mark_attendance(name)
-    cv2.imshow("Webcam", img)
-    cv2.waitKey(1)
+        for encodeFaces, faceLoc in zip(encodings_in_current_frame, faces_in_current_frame):
+            matches = fr.compare_faces(known_faces_encodes, encodeFaces)
+            faceDistance = fr.face_distance(known_faces_encodes, encodeFaces)
+            matchIndex = np.argmin(faceDistance)
+
+            if matches[matchIndex]:
+                name = cl_names[int(matchIndex)].upper()
+                y_1, x_2, y_2, x_1 = faceLoc
+                y_1, x_2, y_2, x_1 = y_1 * 4, x_2 * 4, y_2 * 4, x_1 * 4
+                cv2.rectangle(img, (x_1, y_1), (x_2, y_2), (0, 255, 0), 2)
+                cv2.putText(img, name, (x_1 + 6, y_2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+                mark_attendance(name)
+        cv2.imshow("Webcam", img)
+        cv2.waitKey(1)
