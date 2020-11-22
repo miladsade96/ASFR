@@ -42,6 +42,20 @@ def find_encodings(list_of_images: list) -> list:
     return encodings_list
 
 
+def csv_creator():
+    """
+    Creates a csv file for today attendances
+    :return: None
+    """
+    today = datetime.today()
+    global formatted_today
+    formatted_today = today.strftime("%Y-%m-%d")
+    if not os.path.exists(f"{formatted_today}.csv"):
+        with open(f"{formatted_today}.csv", "w") as f:
+            f.writelines(f"Name, Time")
+
+
+
 def mark_attendance(name_of_person: str) -> None:
     """
     open up the csv file and insert the name and arrive time to file
