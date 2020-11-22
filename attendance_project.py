@@ -7,6 +7,9 @@ from datetime import datetime
 from typing import Tuple, List
 
 
+# defining global variables
+formatted_today = ""
+
 
 def image_loader(path: str) -> Tuple[List[str], list]:
     """
