@@ -137,5 +137,4 @@ dmypy.json
 /.idea/vcs.xml
 /.idea/other.xml
 
-/attendance.csv
 *.csv
