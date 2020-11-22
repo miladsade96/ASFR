@@ -5,10 +5,11 @@ import face_recognition as fr
 import os
 from datetime import datetime
 from typing import Tuple, List
+from khayyam import JalaliDate
 
 
 # defining global variables
-formatted_today = ""
+today = ""
 
 
 def image_loader(path: str) -> Tuple[List[str], list]:
@@ -47,11 +48,10 @@ def csv_creator():
     Creates a csv file for today attendances
     :return: None
     """
-    today = datetime.today()
-    global formatted_today
-    formatted_today = today.strftime("%Y-%m-%d")
-    if not os.path.exists(f"{formatted_today}.csv"):
-        with open(f"{formatted_today}.csv", "w") as f:
+    global today
+    today = str(JalaliDate.today())
+    if not os.path.exists(f"{today}.csv"):
+        with open(f"{today}.csv", "w") as f:
             f.writelines(f"Name, Time")
 
 
@@ -63,7 +63,7 @@ def mark_attendance(name_of_person: str) -> None:
                             by the algorithm
     :return: None
     """
-    with open(f"{formatted_today}.csv", "r+") as f:
+    with open(f"{today}.csv", "r+") as f:
         my_data_list = f.readlines()
         list_of_names = []
         for line in my_data_list:
