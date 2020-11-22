@@ -63,7 +63,7 @@ def mark_attendance(name_of_person: str) -> None:
                             by the algorithm
     :return: None
     """
-    with open("attendance.csv", "r+") as f:
+    with open(f"{formatted_today}.csv", "r+") as f:
         my_data_list = f.readlines()
         list_of_names = []
         for line in my_data_list:
@@ -81,9 +81,11 @@ def main():
     :return: None
     """
     path = "imagesAttendance"
+    # calling functions
     cl_names, images_list = image_loader(path)
     known_faces_encodes = find_encodings(images_list)
     print("Encoding finished.")
+    csv_creator()
 
     # capturing the webcam
     cap = cv2.VideoCapture(0)
