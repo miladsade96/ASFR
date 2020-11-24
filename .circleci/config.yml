@@ -1,8 +1,9 @@
 version: 2.1
 jobs:
   build:
+    # pre-built images: https://circleci.com/docs/2.0/circleci-images/
     docker:
-      - image: alpine:3.7
+      - image: circleci/node:10-browsers
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -18,3 +19,7 @@ jobs:
           command: |
             ls -al
             echo '^^^That should look familiar^^^'
+      - run:
+          name: Running in a Unique Container
+          command: |
+            node -v
