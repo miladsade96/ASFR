@@ -100,6 +100,14 @@ def main():
     cl_names, images_list = image_loader(path)
     known_faces_encodes = find_encodings(images_list)
     print("Encoding finished.")
+
+    save_encodings(known_faces_encodes, cl_names)
+
+    source = open("../data/data_file", "rb").read()
+    my_data = pickle.loads(source)
+    names = open("../data/names", "rb").read()
+    unpickled_names = pickle.loads(names)
+
     csv_creator()
 
     # capturing the webcam
@@ -112,12 +120,12 @@ def main():
         encodings_in_current_frame = fr.face_encodings(img_small, faces_in_current_frame)
 
         for encodeFaces, faceLoc in zip(encodings_in_current_frame, faces_in_current_frame):
-            matches = fr.compare_faces(known_faces_encodes, encodeFaces)
-            faceDistance = fr.face_distance(known_faces_encodes, encodeFaces)
+            matches = fr.compare_faces(my_data, encodeFaces)
+            faceDistance = fr.face_distance(my_data, encodeFaces)
             matchIndex = np.argmin(faceDistance)
 
             if matches[matchIndex]:
-                name = cl_names[int(matchIndex)].upper()
+                name = unpickled_names[int(matchIndex)].upper()
                 y_1, x_2, y_2, x_1 = faceLoc
                 y_1, x_2, y_2, x_1 = y_1 * 4, x_2 * 4, y_2 * 4, x_1 * 4
                 cv2.rectangle(img, (x_1, y_1), (x_2, y_2), (0, 255, 0), 2)
