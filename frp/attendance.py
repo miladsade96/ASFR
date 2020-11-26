@@ -65,8 +65,8 @@ def csv_creator():
     """
     global today
     today = str(JalaliDate.today())
-    if not os.path.exists(f"{today}.csv"):
-        with open(f"{today}.csv", "w") as f:
+    if not os.path.exists(f"../statistics/{today}.csv"):
+        with open(f"../statistics/{today}.csv", "w") as f:
             f.writelines(f"Name, Time")
 
 
@@ -78,7 +78,7 @@ def mark_attendance(name_of_person: str) -> None:
                             by the algorithm
     :return: None
     """
-    with open(f"{today}.csv", "r+") as f:
+    with open(f"../statistics/{today}.csv", "r+") as f:
         my_data_list = f.readlines()
         list_of_names = []
         for line in my_data_list:
@@ -95,7 +95,7 @@ def main():
     The main function to run the program
     :return: None
     """
-    path = "imagesAttendance"
+    path = "../imagesAttendance"
     # calling functions
     cl_names, images_list = image_loader(path)
     known_faces_encodes = find_encodings(images_list)
