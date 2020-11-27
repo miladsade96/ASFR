@@ -120,50 +120,52 @@ def main():
             except ValueError:
                 print(f"Your entered value is not numeric!")
 
+        if user_input == 1:
+            path = input("Enter path to directory:")
+            cl_names, images_list = image_loader(path)
+            print("Loading images completed!")
+        elif user_input == 2:
+            known_faces_encodes = find_encodings(images_list)
+            print("Encoding process completed!")
+        elif user_input == 3:
+            save_encodings(known_faces_encodes, cl_names)
+            print("Saving process completed!")
+        elif user_input == 4:
+            source = open("../data/data_file", "rb").read()
+            my_data = pickle.loads(source)
+            names = open("../data/names", "rb").read()
+            unpickled_names = pickle.loads(names)
 
-def other():
-    """
-    The main function to run the program
-    :return: None
-    """
-    path = "../imagesAttendance"
-    # calling functions
-    cl_names, images_list = image_loader(path)
-    known_faces_encodes = find_encodings(images_list)
-    print("Encoding finished.")
+            csv_creator()
 
-    save_encodings(known_faces_encodes, cl_names)
+            # capturing the webcam
+            cap = cv2.VideoCapture(0)
+            while True:
+                ret, img = cap.read()
+                small_image = cv2.resize(img, (0, 0), None, 0.25, 0.25)
+                small_image = cv2.cvtColor(small_image, cv2.COLOR_BGR2RGB)
+                faces_in_current_frame = fr.face_locations(small_image)
+                encodings_in_current_frame = fr.face_encodings(small_image, faces_in_current_frame)
 
-    source = open("../data/data_file", "rb").read()
-    my_data = pickle.loads(source)
-    names = open("../data/names", "rb").read()
-    unpickled_names = pickle.loads(names)
+                for encode_face, face_location in zip(encodings_in_current_frame, faces_in_current_frame):
+                    matches = fr.compare_faces(my_data, encode_face)
+                    face_distance = fr.face_distance(my_data, encode_face)
+                    index_of_match = np.argmin(face_distance)
 
-    csv_creator()
+                    if matches[index_of_match]:
+                        name = unpickled_names[int(index_of_match)].upper()
+                        y_1, x_2, y_2, x_1 = face_location
+                        y_1, x_2, y_2, x_1 = y_1 * 4, x_2 * 4, y_2 * 4, x_1 * 4
+                        cv2.rectangle(img, (x_1, y_1), (x_2, y_2), (0, 255, 0), 2)
+                        cv2.putText(img, name, (x_1 + 6, y_2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1,
+                                    (255, 255, 255), 2)
+                        mark_attendance(name)
+                cv2.imshow("Webcam", img)
+                cv2.waitKey(1)
 
-    # capturing the webcam
-    cap = cv2.VideoCapture(0)
-    while True:
-        success, img = cap.read()
-        img_small = cv2.resize(img, (0, 0), None, 0.25, 0.25)
-        img_small = cv2.cvtColor(img_small, cv2.COLOR_BGR2RGB)
-        faces_in_current_frame = fr.face_locations(img_small)
-        encodings_in_current_frame = fr.face_encodings(img_small, faces_in_current_frame)
-
-        for encodeFaces, faceLoc in zip(encodings_in_current_frame, faces_in_current_frame):
-            matches = fr.compare_faces(my_data, encodeFaces)
-            faceDistance = fr.face_distance(my_data, encodeFaces)
-            matchIndex = np.argmin(faceDistance)
-
-            if matches[matchIndex]:
-                name = unpickled_names[int(matchIndex)].upper()
-                y_1, x_2, y_2, x_1 = faceLoc
-                y_1, x_2, y_2, x_1 = y_1 * 4, x_2 * 4, y_2 * 4, x_1 * 4
-                cv2.rectangle(img, (x_1, y_1), (x_2, y_2), (0, 255, 0), 2)
-                cv2.putText(img, name, (x_1 + 6, y_2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
-                mark_attendance(name)
-        cv2.imshow("Webcam", img)
-        cv2.waitKey(1)
+        elif user_input == 5:
+            print("\n" + "GoodBye!".center(50, "-") + "\n")
+            break
 
 
 if __name__ == '__main__':
