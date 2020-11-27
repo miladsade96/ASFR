@@ -90,7 +90,16 @@ def mark_attendance(name_of_person: str) -> None:
             f.writelines(f"\n{name_of_person}, {date_string}")
 
 
+
 def main():
+    """
+    Startup and execution function
+    :return: None
+    """
+    pass
+
+
+def other():
     """
     The main function to run the program
     :return: None
