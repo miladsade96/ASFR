@@ -90,6 +90,7 @@ def mark_attendance(name_of_person: str) -> None:
             f.writelines(f"\n{name_of_person}, {date_string}")
 
 
+global user_input, images_list, known_faces_encodes, cl_names
 
 def main():
     """
