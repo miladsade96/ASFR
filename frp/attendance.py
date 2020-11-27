@@ -97,7 +97,28 @@ def main():
     Startup and execution function
     :return: None
     """
-    pass
+    global user_input, images_list, known_faces_encodes, cl_names
+    while True:
+        print("Attendance system using facial recognition".center(50, "-"))
+        print("-" * 50)
+        print("\nOptions:\n"
+              "1. Loading all images in the given directory\n"
+              "2. Encoding all images given in the previous section\n"
+              "3. Saving generated encodings and names into files\n"
+              "4. Running attendance system\n"
+              "5. Exit"
+              "\nChoose your option by entering numeric value.")
+        # getting user input option
+        while True:
+            try:
+                user_input = int(input("Enter your option:"))
+                if 1 > user_input > 4:
+                    print(f"There is no valid option to your given value -> {user_input}")
+                    continue
+                else:
+                    break
+            except ValueError:
+                print(f"Your entered value is not numeric!")
 
 
 def other():
