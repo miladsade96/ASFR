@@ -25,10 +25,12 @@ def image_loader(path: str) -> Tuple[List[str], list]:
     """
     images = []
     class_names = []
+    # Adding list of contents to a list
     list_of_contents = os.listdir(path)
     for cl in list_of_contents:
         current_image = cv2.imread(f"{path}/{cl}")
         images.append(current_image)
+        # dropping the file extension
         class_names.append(os.path.splitext(cl)[0])
     return class_names, images
 
@@ -42,6 +44,7 @@ def find_encodings(list_of_images: list) -> list:
     """
     encodings_list = [] # images encodings will store here
     for img in list_of_images:
+        # convert BGR to RGB
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         encode = fr.face_encodings(img)[0]
         encodings_list.append(encode)
@@ -55,9 +58,9 @@ def save_encodings(encodings: List, class_names: List):
     :param encodings: list of generated encodings
     :return: None
     """
+    # opening data_file and names and pickling to them
     with open("../data/data_file", "wb") as dump:
         dump.write(pickle.dumps(encodings))
-
     with open("../data/names", "wb") as f:
         f.write(pickle.dumps(class_names))
 
@@ -144,26 +147,40 @@ def main():
             # capturing the webcam
             cap = cv2.VideoCapture(0)
             while True:
-                ret, img = cap.read()
+                ret, img = cap.read()   # ret: True if the frame is read correctly, otherwise False
+                # making small - quarter
                 small_image = cv2.resize(img, (0, 0), None, 0.25, 0.25)
+                # converting BGR to RGB
                 small_image = cv2.cvtColor(small_image, cv2.COLOR_BGR2RGB)
+                # finding face locations in the current frame
                 faces_in_current_frame = fr.face_locations(small_image)
+                # encoding faces that are located in the current frame
                 encodings_in_current_frame = fr.face_encodings(small_image, faces_in_current_frame)
 
                 for encode_face, face_location in zip(encodings_in_current_frame, faces_in_current_frame):
+                    # comparing faces
                     matches = fr.compare_faces(my_data, encode_face)
+                    # calculating the distance
                     face_distance = fr.face_distance(my_data, encode_face)
+                    # finding the index of minimum value (correct encoding)
                     index_of_match = np.argmin(face_distance)
 
                     if matches[index_of_match]:
+                        # capitalizing the name of person
                         name = unpickled_names[int(index_of_match)].upper()
                         y_1, x_2, y_2, x_1 = face_location
+                        # undoing making small image - Quadruple
                         y_1, x_2, y_2, x_1 = y_1 * 4, x_2 * 4, y_2 * 4, x_1 * 4
+                        # image itself, start_point, end_point, color, thickness
                         cv2.rectangle(img, (x_1, y_1), (x_2, y_2), (0, 255, 0), 2)
+                        # image itself, text string, coordinate of text, font type, font scale, color, thickness
                         cv2.putText(img, name, (x_1 + 6, y_2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1,
                                     (255, 255, 255), 2)
+                        # inserting the name and the time to csv file
                         mark_attendance(name)
+                # name of the window, image itself
                 cv2.imshow("Webcam", img)
+                # display a frame for 1 ms
                 cv2.waitKey(1)
 
         elif user_input == 5:
