@@ -139,3 +139,7 @@ dmypy.json
 
 *.csv
 /.idea/encodings.xml
+
+
+# data files
+/data/*
