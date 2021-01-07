@@ -59,9 +59,9 @@ def save_encodings(encodings: List, class_names: List):
     :return: None
     """
     # opening data_file and names and pickling to them
-    with open("../data/data_file", "wb") as dump:
+    with open("./data/data_file", "wb") as dump:
         dump.write(pickle.dumps(encodings))
-    with open("../data/names", "wb") as f:
+    with open("./data/names", "wb") as f:
         f.write(pickle.dumps(class_names))
 
 
@@ -72,8 +72,8 @@ def csv_creator():
     """
     global today
     today = str(JalaliDate.today())
-    if not os.path.exists(f"../statistics/{today}.csv"):
-        with open(f"../statistics/{today}.csv", "w") as f:
+    if not os.path.exists(f"./statistics/{today}.csv"):
+        with open(f"./statistics/{today}.csv", "w") as f:
             f.writelines(f"Name, Time")
 
 
@@ -85,7 +85,7 @@ def mark_attendance(name_of_person: str) -> None:
                             by the algorithm
     :return: None
     """
-    with open(f"../statistics/{today}.csv", "r+") as f:
+    with open(f"./statistics/{today}.csv", "r+") as f:
         my_data_list = f.readlines()
         list_of_names = []
         for line in my_data_list:
@@ -137,9 +137,9 @@ def main():
             save_encodings(known_faces_encodes, cl_names)
             print("Saving process completed!")
         elif user_input == 4:
-            source = open("../data/data_file", "rb").read()
+            source = open("./data/data_file", "rb").read()
             my_data = pickle.loads(source)
-            names = open("../data/names", "rb").read()
+            names = open("./data/names", "rb").read()
             unpickled_names = pickle.loads(names)
 
             csv_creator()
