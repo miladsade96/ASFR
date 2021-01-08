@@ -142,4 +142,5 @@ dmypy.json
 
 
 # data files
-/data
+./data/data_file
+./data/names
