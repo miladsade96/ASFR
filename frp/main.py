@@ -147,7 +147,7 @@ def main():
             # capturing the webcam
             cap = cv2.VideoCapture(0)
             while True:
-                ret, img = cap.read()   # ret: True if the frame is read correctly, otherwise False
+                _, img = cap.read()   # _: True if the frame is read correctly, otherwise False
                 # making small - quarter
                 small_image = cv2.resize(img, (0, 0), None, 0.25, 0.25)
                 # converting BGR to RGB
