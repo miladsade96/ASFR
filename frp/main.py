@@ -121,8 +121,7 @@ def main():
                 if 1 > user_input > 4:
                     print(f"There is no valid option to your given value -> {user_input}")
                     continue
-                else:
-                    break
+                break
             except ValueError:
                 print(f"Your entered value is not numeric!")
 
