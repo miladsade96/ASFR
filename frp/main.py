@@ -17,9 +17,9 @@ known_faces_encodes = []
 cl_names = []
 
 
-def mark_attendance(name_of_person: str) -> None:
+def attendance_marker(name_of_person: str) -> None:
     """
-    open up the csv file and insert the name and arrive time to file
+    opens the csv file and insert the name and arrive time to file
     :param name_of_person: str, name of the person whom recognized
                             by the algorithm
     :return: None
