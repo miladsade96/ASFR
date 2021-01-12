@@ -17,19 +17,6 @@ known_faces_encodes = []
 cl_names = []
 
 
-def csv_creator():
-    """
-    Creates a csv file for today attendances
-    :return: None
-    """
-    global today
-    today = str(JalaliDate.today())
-    if not os.path.exists(f"./statistics/{today}.csv"):
-        with open(f"./statistics/{today}.csv", "w") as f:
-            f.writelines(f"Name, Time")
-
-
-
 def mark_attendance(name_of_person: str) -> None:
     """
     open up the csv file and insert the name and arrive time to file
