@@ -1,4 +1,4 @@
-"""Saving generated encodes to corresponding files located in data directory"""
+"""Saving generated encodes to corresponding files located in data directory."""
 
 # import statements
 import pickle
