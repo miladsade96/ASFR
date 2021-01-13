@@ -1,3 +1,5 @@
+"""Loading known faces images from given directory"""
+
 # import statements
 import os
 import cv2
