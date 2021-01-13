@@ -1,3 +1,7 @@
+"""
+    Inserting recognized faces to corresponding csv file.
+"""
+
 # import statements
 from datetime import datetime
 from khayyam import JalaliDate
@@ -10,8 +14,8 @@ def attendance_marker(name_of_person: str) -> None:
                             by the algorithm
     :return: None
     """
-    with open(f"./statistics/{str(JalaliDate.today())}.csv", "r+") as f:
-        my_data_list = f.readlines()
+    with open(f"../statistics/{str(JalaliDate.today())}.csv", "r+") as file:
+        my_data_list = file.readlines()
         list_of_names = []
         for line in my_data_list:
             entry = line.split(", ")
@@ -19,5 +23,4 @@ def attendance_marker(name_of_person: str) -> None:
         if name_of_person not in list_of_names:
             now = datetime.now()
             date_string = now.strftime("%H:%M:%S")
-            f.writelines(f"\n{name_of_person}, {date_string}")
-
+            file.writelines(f"\n{name_of_person}, {date_string}")
