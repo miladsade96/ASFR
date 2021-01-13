@@ -1,3 +1,8 @@
+"""
+    Saving generated encodes to corresponding files located
+    in data directory
+"""
+
 # import statements
 import pickle
 from typing import List
@@ -11,7 +16,7 @@ def save_encodings(encodings: List, class_names: List):
     :return: None
     """
     # opening data_file and names and pickling to them
-    with open("./data/data_file", "wb") as dump:
+    with open("../data/data_file", "wb") as dump:
         dump.write(pickle.dumps(encodings))
-    with open("./data/names", "wb") as f:
-        f.write(pickle.dumps(class_names))
+    with open("../data/names", "wb") as file:
+        file.write(pickle.dumps(class_names))
