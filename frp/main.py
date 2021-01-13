@@ -57,10 +57,10 @@ def main():
             save_encodings(known_faces_encodes, cl_names)
             print("Saving process completed!")
         elif user_input == 4:
-            source = open("./data/data_file", "rb").read()
-            my_data = pickle.loads(source)
-            names = open("./data/names", "rb").read()
-            unpickled_names = pickle.loads(names)
+            with open("../data/data_file", "rb") as file_1:
+                my_data = pickle.loads(file_1.read())
+            with open("../data/names", "rb") as file_2:
+                unpickled_names = pickle.loads(file_2.read())
 
             csv_creator()
 
