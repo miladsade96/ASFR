@@ -1,5 +1,6 @@
 # import statements
 from datetime import datetime
+from khayyam import JalaliDate
 
 
 def attendance_marker(name_of_person: str) -> None:
@@ -9,7 +10,7 @@ def attendance_marker(name_of_person: str) -> None:
                             by the algorithm
     :return: None
     """
-    with open(f"./statistics/{today}.csv", "r+") as f:
+    with open(f"./statistics/{str(JalaliDate.today())}.csv", "r+") as f:
         my_data_list = f.readlines()
         list_of_names = []
         for line in my_data_list:

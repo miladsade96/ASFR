@@ -6,11 +6,9 @@ import os
 import pickle
 from datetime import datetime
 from typing import Tuple, List
-from khayyam import JalaliDate
 
 
 # defining global variables
-today = ""
 user_input = int
 images_list = []
 known_faces_encodes = []
