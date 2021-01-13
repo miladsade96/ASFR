@@ -1,7 +1,12 @@
+"""
+    Generating encode values(vectors) for each image located in
+    imagesAttendance directory
+"""
+
 # import statements
+from typing import List
 import cv2
 import face_recognition as fr
-from typing import List
 
 
 def encoder(list_of_images: List) -> List:
