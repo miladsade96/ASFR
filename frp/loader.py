@@ -6,7 +6,7 @@ from typing import Tuple, List
 
 def image_loader(path: str) -> Tuple[List[str], list]:
     """
-    Loading images from given directory
+    Loading images from given directory.
     :param path: str, address of images directory
     :return: list, images class names
     """
