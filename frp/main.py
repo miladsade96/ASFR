@@ -1,11 +1,15 @@
 # import statements
-import numpy as np
-import cv2
-import face_recognition as fr
-import os
 import pickle
-from datetime import datetime
-from typing import Tuple, List
+
+import cv2
+import numpy as np
+import face_recognition as fr
+
+from .csv import csv_creator
+from .saver import save_encodings
+from .loader import image_loader
+from .encoder import encoder
+from .marker import attendance_marker
 
 
 # defining global variables
@@ -47,7 +51,7 @@ def main():
             cl_names, images_list = image_loader(path)
             print("Loading images completed!")
         elif user_input == 2:
-            known_faces_encodes = find_encodings(images_list)
+            known_faces_encodes = encoder(images_list)
             print("Encoding process completed!")
         elif user_input == 3:
             save_encodings(known_faces_encodes, cl_names)
@@ -93,7 +97,7 @@ def main():
                         cv2.putText(img, name, (x_1 + 6, y_2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1,
                                     (255, 255, 255), 2)
                         # inserting the name and the time to csv file
-                        mark_attendance(name)
+                        attendance_marker(name)
                 # name of the window, image itself
                 cv2.imshow("Webcam", img)
                 # display a frame for 1 ms
