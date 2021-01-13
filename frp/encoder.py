@@ -1,6 +1,4 @@
-"""
-Generating encode values(vectors) for each image located in imagesAttendance directory
-"""
+"""Generating encode values(vectors) for each image located in imagesAttendance directory."""
 
 # import statements
 from typing import List
