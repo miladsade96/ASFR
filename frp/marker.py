@@ -1,6 +1,4 @@
-"""
-    Inserting recognized faces to corresponding csv file.
-"""
+"""Inserting recognized faces to corresponding csv file."""
 
 # import statements
 from datetime import datetime
@@ -9,7 +7,7 @@ from khayyam import JalaliDate
 
 def attendance_marker(name_of_person: str) -> None:
     """
-    opens the csv file and insert the name and arrive time to file
+    Opens the csv file and insert the name and arrive time to file.
     :param name_of_person: str, name of the person whom recognized
                             by the algorithm
     :return: None
