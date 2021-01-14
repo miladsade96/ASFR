@@ -5,11 +5,11 @@ import cv2
 import numpy as np
 import face_recognition as fr
 
-from .csv import csv_creator
-from .saver import save_encodings
-from .loader import image_loader
-from .encoder import encoder
-from .marker import attendance_marker
+from frp.csv import csv_creator
+from frp.saver import save_encodings
+from frp.loader import image_loader
+from frp.encoder import encoder
+from frp.marker import attendance_marker
 
 
 # defining global variables
