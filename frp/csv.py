@@ -13,3 +13,4 @@ def csv_creator():
     if not os.path.exists(f"../statistics/{str(JalaliDate.today())}.csv"):
         with open(f"../statistics/{str(JalaliDate.today())}.csv", "w") as file:
             file.writelines("Name, Time")
+            file.flush()

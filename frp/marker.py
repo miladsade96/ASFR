@@ -22,3 +22,4 @@ def attendance_marker(name_of_person: str) -> None:
             now = datetime.now()
             date_string = now.strftime("%H:%M:%S")
             file.writelines(f"\n{name_of_person}, {date_string}")
+            file.flush()

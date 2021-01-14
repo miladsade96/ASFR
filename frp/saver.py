@@ -15,5 +15,7 @@ def save_encodings(encodings: List, class_names: List):
     # opening data_file and names and pickling to them
     with open("../data/data_file", "wb") as dump:
         dump.write(pickle.dumps(encodings))
+        dump.flush()
     with open("../data/names", "wb") as file:
         file.write(pickle.dumps(class_names))
+        file.flush()
