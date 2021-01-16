@@ -144,3 +144,4 @@ dmypy.json
 # data files
 ./data/data_file
 ./data/names
+/test_imgs
