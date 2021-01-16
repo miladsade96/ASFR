@@ -1,5 +1,6 @@
 # import statements
 import pickle
+from concurrent.futures import ProcessPoolExecutor
 
 import cv2
 import numpy as np
@@ -51,7 +52,9 @@ def main():
             cl_names, images_list = image_loader(path)
             print("Loading images completed!")
         elif user_input == 2:
-            known_faces_encodes = encoder(images_list)
+            with ProcessPoolExecutor() as executor:
+                known_faces_encodes = executor.map(encoder, images_list)
+            known_faces_encodes = list(known_faces_encodes)
             print("Encoding process completed!")
         elif user_input == 3:
             save_encodings(known_faces_encodes, cl_names)
