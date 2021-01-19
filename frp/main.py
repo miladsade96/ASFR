@@ -5,6 +5,7 @@ from concurrent.futures import ProcessPoolExecutor
 import cv2
 import numpy as np
 import face_recognition as fr
+from alive_progress import alive_bar
 
 from frp.csv import csv_creator
 from frp.saver import save_encodings
@@ -52,9 +53,11 @@ def main():
             cl_names, images_list = image_loader(path)
             print("Loading images completed!")
         elif user_input == 2:
-            with ProcessPoolExecutor() as executor:
-                known_faces_encodes = executor.map(encoder, images_list)
-            known_faces_encodes = list(known_faces_encodes)
+            with alive_bar(len(images_list)) as bar, ProcessPoolExecutor() as executor:
+                known_faces_encodes = []
+                for enc in executor.map(encoder, images_list):
+                    bar()
+                    known_faces_encodes.append(enc)
             print("Encoding process completed!")
         elif user_input == 3:
             save_encodings(known_faces_encodes, cl_names)
