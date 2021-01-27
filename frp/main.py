@@ -104,6 +104,14 @@ def main():
                                     (255, 255, 255), 2)
                         # inserting the name and the time to csv file
                         attendance_marker(name)
+                    else:
+                        # unpacking face location
+                        y_1, x_2, y_2, x_1 = face_location
+                        # undoing making small image - Quadruple
+                        y_1, x_2, y_2, x_1 = y_1 * 4, x_2 * 4, y_2 * 4, x_1 * 4
+                        cv2.rectangle(img, (x_1, y_1), (x_2, y_2), (0, 0, 255), 2)
+                        cv2.putText(img, "Unknown Face!", (x_1 + 6, y_2 - 6),
+                                    cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
                 # name of the window, image itself
                 cv2.imshow("Webcam", img)
                 # display a frame for 1 ms
