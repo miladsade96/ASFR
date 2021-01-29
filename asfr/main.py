@@ -7,11 +7,11 @@ import numpy as np
 import face_recognition as fr
 from alive_progress import alive_bar
 
-from frp.csv import csv_creator
-from frp.saver import save_encodings
-from frp.loader import image_loader
-from frp.encoder import encoder
-from frp.marker import attendance_marker
+from asfr.csv import csv_creator
+from asfr.saver import save_encodings
+from asfr.loader import image_loader
+from asfr.encoder import encoder
+from asfr.marker import attendance_marker
 
 
 # defining global variables
