@@ -142,7 +142,7 @@ dmypy.json
 
 
 # data files
-/data
+*/data/*
 /test_imgs
 /virtual_environment/
 /.idea/ASFR.iml
