@@ -148,3 +148,4 @@ dmypy.json
 /virtual_environment/
 /.idea/ASFR.iml
 /statistics/
+/.idea/pylint.xml
