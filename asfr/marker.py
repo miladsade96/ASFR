@@ -1,7 +1,6 @@
 """Inserting recognized faces to corresponding csv file."""
 
 # import statements
-from _csv import reader
 from datetime import datetime
 from khayyam import JalaliDate
 
