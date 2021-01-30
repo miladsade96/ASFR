@@ -13,6 +13,8 @@ def attendance_marker(name_of_person: str) -> None:
                             by the algorithm
     :return: None
     """
+
+    fmt = "%H:%M:%S"    # time format
     with open(f"../statistics/{str(JalaliDate.today())}.csv", "r+") as file:
         my_data_list = file.readlines()
         list_of_names = []
