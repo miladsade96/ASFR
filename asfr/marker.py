@@ -30,3 +30,17 @@ def attendance_marker(name_of_person: str) -> None:
             date_string = now.strftime(fmt)
             file.writelines(f"\n{name_of_person},{date_string}")
             file.flush()
+        else:
+            # When name of person previously stored in csv file
+            now = datetime.now()
+            now_str = datetime.strftime(now, fmt)
+            now_time = datetime.strptime(now_str, fmt)
+            for name, time in zip(list(reversed(names)), list(reversed(times))):
+                if name == name_of_person:
+                    latest_time_str = time.strip()
+                    latest_time = datetime.strptime(latest_time_str, fmt)
+                    delta = (now_time - latest_time).total_seconds()
+                    break
+            if delta > 30.0:
+                file.writelines(f"\n{name_of_person},{now_str}")
+                file.flush()
