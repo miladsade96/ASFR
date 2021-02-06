@@ -149,3 +149,4 @@ dmypy.json
 /.idea/ASFR.iml
 /statistics/
 /.idea/pylint.xml
+/imagesAttendance/*.jpg
