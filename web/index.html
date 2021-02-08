@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="header">
+      <div class="container flex">
+        <div class="flex-1">
+          <h4 class="logo">ASFR</h4>
+        </div>
+        <small class="date small">Monday, 8 February 2021</small>
+      </div>
+    </section>
+    <section class="form grid gap">
+      <div class="input">
+        <label for="file"
+          >Choose a file:
+          <input type="file" id="file" name="file" accept="*" />
+        </label>
+      </div>
+      <div class="input">
+        <label for="progress"
+          >Progress:
+          <progress id="progress" value="50" max="100"></progress>
+        </label>
+        <button class="small">Encode</button>
+      </div>
+    </section>
+    <section class="main grid">
+      <video
+        src="https://cdn.videvo.net/videvo_files/video/free/2017-08/small_watermarked/170724_15_Setangibeach_preview.webm"
+        autoplay
+        loop
+        class="rounded-2"
+      ></video>
+      <div class="statistics rounded-2">
+        <h6>Statistics:</h6>
+        <p>
+          Peppers garlic parmesan string cheese ham sausage mozzarella meatball
+          parmesan onions party bianca. Onions extra sauce thin crust chicken
+          and bacon, thin crust ranch burnt mouth peppers large marinara buffalo
+          sauce. White garlic meatball ricotta:
+        </p>
+        <ul>
+          <li>Pizza ipsum dolor amet mayo white</li>
+          <li>Peppers garlic parmesan string</li>
+          <li>Onions ham extra sauce</li>
+        </ul>
+      </div>
+    </section>
+    <section class="footer flex gap justify-end">
+      <button>Start</button>
+      <button class="secondary">Stop</button>
+    </section>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

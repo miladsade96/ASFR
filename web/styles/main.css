@@ -1,0 +1,63 @@
+body {
+  padding: 4rem;
+  padding: clamp(4rem, 1vw, 4rem);
+}
+
+section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+section.header {
+  background: var(--grey);
+  border-radius: 10px;
+}
+
+section.main,
+section.form {
+  padding-top: 1rem;
+  grid-column-gap: 1rem;
+  grid-template-columns: 2fr 1fr;
+}
+
+section.footer {
+  padding-top: 1rem;
+}
+
+.container {
+  padding: 25px;
+}
+
+video {
+  width: 100%;
+  flex: 2;
+}
+
+label {
+  font-size: 0.833rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+input,
+progress {
+  padding-top: 5px;
+}
+
+.statistics {
+  padding: 1rem;
+  background: var(--grey);
+}
+
+.input {
+  flex: 1;
+  gap: 1rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.logo {
+  line-height: 1.6;
+  color: var(--orange);
+}
