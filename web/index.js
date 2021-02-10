@@ -60,5 +60,8 @@ startButton.addEventListener("click", function () {
 
 // will fire if `stop` button's click action triggered to remove video src
 stopButton.addEventListener("click", function () {
-  video.srcObject = "";
+  const mediaStream = video.srcObject;
+  const tracks = mediaStream.getTracks();
+  tracks.forEach((track) => track.stop());
+  video.src = "";
 });
