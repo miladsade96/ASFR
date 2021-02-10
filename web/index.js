@@ -9,7 +9,7 @@ if (navigator.mediaDevices.getUserMedia) {
       video.play();
     })
     .catch(function (error) {
-      console.log("Something went wrong!");
+      alert("Your browser does not support getUserMedia()");
       console.error(error);
     });
 }
