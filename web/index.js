@@ -1,6 +1,9 @@
 const date = document.querySelector("#date");
 const progress = document.querySelector("#encodeProgress");
 const video = document.querySelector("#videoElement");
+const startButton = document.querySelector("#start");
+const stopButton = document.querySelector("#stop");
+const statistics = document.querySelector(".statistics");
 
 // change date value
 const dateOptions = {
@@ -28,3 +31,28 @@ if (navigator.mediaDevices.getUserMedia) {
       console.error(error);
     });
 }
+
+startButton.addEventListener("click", function () {
+  if (statistics.innerHTML === "") {
+    // change csv file address
+    d3.text("addresses.csv", function (data) {
+      const parsedCSV = d3.csv.parseRows(data);
+
+      d3.select(".statistics")
+        .append("table")
+        .selectAll("tr")
+        .data(parsedCSV)
+        .enter()
+        .append("tr")
+        .selectAll("td")
+        .data(function (d) {
+          return d;
+        })
+        .enter()
+        .append("td")
+        .text(function (d) {
+          return d;
+        });
+    });
+  }
+});

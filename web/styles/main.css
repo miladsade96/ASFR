@@ -55,7 +55,7 @@ progress {
 }
 
 .statistics {
-  padding: 1rem;
+  /* padding: 1rem; */
   margin-top: 1rem;
   background: var(--grey);
 }
@@ -70,4 +70,41 @@ progress {
 .logo {
   line-height: 1.6;
   color: var(--orange);
+}
+
+table {
+  /* border-collapse: collapse; */
+  width: 100%;
+  background: transparent;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 1rem;
+}
+
+tr:nth-child(odd) {
+  background: var(--white);
+}
+
+tr:first-child {
+  /* background: var(--black); */
+  color: var(--white);
+}
+
+tr:first-child td {
+  background: var(--black);
+}
+
+tr:first-child td:first-child {
+  border-radius: 10px 0 0 0;
+  -moz-border-radius: 10px 0 0 0;
+}
+
+tr:first-child td:last-child {
+  border-radius: 0 10px 0 0;
+  -moz-border-radius: 0 10px 0 0;
 }

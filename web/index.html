@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/global.css" />
     <link rel="stylesheet" href="./styles/main.css" />
+    <script src="./js/d3.v3.min.js"></script>
     <title>ASFR</title>
   </head>
   <body>
@@ -34,28 +35,13 @@
     </section>
     <section class="main grid">
       <video id="videoElement" class="rounded-2" autoplay="true"></video>
-      <div class="statistics rounded-2">
-        <h6>Statistics:</h6>
-        <p>
-          Peppers garlic parmesan string cheese ham sausage mozzarella meatball
-          parmesan onions party bianca. Onions extra sauce thin crust chicken
-          and bacon, thin crust ranch burnt mouth peppers large marinara buffalo
-          sauce. White garlic meatball ricotta:
-        </p>
-        <ul>
-          <li>Pizza ipsum dolor amet mayo white</li>
-          <li>Peppers garlic parmesan string</li>
-          <li>Onions ham extra sauce</li>
-        </ul>
-      </div>
+      <div class="statistics rounded-2"></div>
     </section>
     <section class="footer flex gap justify-end">
-      <button>Start</button>
-      <button class="secondary">Stop</button>
+      <button id="start">Start</button>
+      <button id="stop" class="secondary">Stop</button>
     </section>
 
     <script src="./index.js"></script>
   </body>
 </html>
-
-<!-- src="https://cdn.videvo.net/videvo_files/video/free/2017-08/small_watermarked/170724_15_Setangibeach_preview.webm" -->
