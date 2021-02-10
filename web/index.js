@@ -5,7 +5,7 @@ if (navigator.mediaDevices.getUserMedia) {
     .getUserMedia({ video: true })
     .then(function (stream) {
       video.srcObject = stream;
-      video.reload();
+      video.load();
       video.play();
     })
     .catch(function (error) {
