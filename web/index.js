@@ -32,7 +32,7 @@ if (navigator.mediaDevices.getUserMedia) {
     });
 }
 
-// display csv file if Start button's click action triggered
+// will fire if `start` button's click action triggered to display csv file as a table
 startButton.addEventListener("click", function () {
   if (statistics.innerHTML === "") {
     // change csv file address
@@ -56,4 +56,9 @@ startButton.addEventListener("click", function () {
         });
     });
   }
+});
+
+// will fire if `stop` button's click action triggered to remove video src
+stopButton.addEventListener("click", function () {
+  video.srcObject = "";
 });
