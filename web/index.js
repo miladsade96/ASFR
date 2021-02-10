@@ -32,6 +32,7 @@ if (navigator.mediaDevices.getUserMedia) {
     });
 }
 
+// display csv file if Start button's click action triggered
 startButton.addEventListener("click", function () {
   if (statistics.innerHTML === "") {
     // change csv file address
