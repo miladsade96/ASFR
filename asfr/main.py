@@ -1,17 +1,20 @@
 # import statements
-import pickle
+
 from concurrent.futures import ProcessPoolExecutor
 
-import cv2
+from datetime import datetime
 import numpy as np
-import face_recognition as fr
 from alive_progress import alive_bar
+import face_recognition as fr
 
-from asfr.csv import csv_creator
-from asfr.saver import save_encodings
-from asfr.loader import image_loader
-from asfr.encoder import encoder
-from asfr.marker import attendance_marker
+import _csv
+from pathlib import Path
+from khayyam import JalaliDate
+import os
+import cv2
+from typing import Tuple, List
+
+import pickle
 
 
 # defining global variables
@@ -19,6 +22,113 @@ user_input = int
 images_list = []
 known_faces_encodes = []
 cl_names = []
+
+
+def csv_creator():
+    """
+    Creates a csv file for today attendances.
+    :return: None
+    """
+    Path("../statistics").mkdir(parents=True, exist_ok=True)
+    if not os.path.exists(f"../statistics/{str(JalaliDate.today())}.csv"):
+        with open(f"../statistics/{str(JalaliDate.today())}.csv", "w") as file:
+            file.writelines("Name,Time")
+            file.flush()
+
+
+def csv_reader():
+    with open(f"../statistics/{str(JalaliDate.today())}.csv", "r") as file:
+        read = _csv.reader(file)
+        for row in read:
+            print(",".join(row))
+
+
+def encoder(image):
+    """
+    Find encodings for each image located in the given list.
+    :param image: loaded image
+    :return: encode value
+    """
+    # convert BGR to RGB
+    img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    encode = fr.face_encodings(img)[0]
+    return encode
+
+
+def image_loader(path: str) -> Tuple[List[str], list]:
+    """
+    Loading images from given directory.
+    :param path: str, address of images directory
+    :return: list, images class names
+    """
+    images = []
+    class_names = []
+    # Adding list of contents to a list
+    list_of_contents = os.listdir(path)
+    for cl in list_of_contents:
+        current_image = cv2.imread(f"{path}/{cl}")
+        images.append(current_image)
+        # dropping the file extension
+        class_names.append(os.path.splitext(cl)[0])
+    return class_names, images
+
+
+def attendance_marker(name_of_person: str) -> None:
+    """
+    Opens the csv file and insert the name and arrive time to file.
+    :param name_of_person: str, name of the person whom recognized
+                            by the algorithm
+    :return: None
+    """
+    fmt = "%H:%M:%S"    # time format
+    with open(f"../statistics/{str(JalaliDate.today())}.csv", "r+") as file:
+        my_data_list = file.readlines()
+        # declaring two empty lists to store previous records
+        names = []
+        times = []
+        for line in my_data_list[1:]:   # skipping first row(Name,Time)
+            line = line.strip()     # skipping new line character
+            entry = line.split(",")
+            names.append(entry[0])
+            times.append(entry[1])
+        if name_of_person not in names:
+            now = datetime.now()
+            date_string = now.strftime(fmt)
+            file.writelines(f"\n{name_of_person},{date_string}")
+            file.flush()
+        else:
+            # When name of person previously stored in csv file
+            now = datetime.now()
+            now_str = datetime.strftime(now, fmt)
+            now_time = datetime.strptime(now_str, fmt)
+            for name, time in zip(list(reversed(names)), list(reversed(times))):
+                if name == name_of_person:
+                    latest_time_str = time.strip()
+                    latest_time = datetime.strptime(latest_time_str, fmt)
+                    delta = (now_time - latest_time).total_seconds()
+                    break   # breaks for loop when first wanted record is found
+            if delta > 30.0:    # if 30 seconds have elapsed since the last arrical
+                file.writelines(f"\n{name_of_person},{now_str}")
+                file.flush()
+
+
+def save_encodings(encodings: List, class_names: List):
+    """
+    Save encodings into a file.
+    :param class_names: class names of images
+    :param encodings: list of generated encodings
+    :return: None
+    """
+    # opening data_file and names and pickling to them
+    with open("../data/data_file", "wb") as dump:
+        dump.write(pickle.dumps(encodings))
+        dump.flush()
+    with open("../data/names", "wb") as file:
+        file.write(pickle.dumps(class_names))
+        file.flush()
+
+
+# ----------------------------------------------------------------------------------
 
 
 def main():
