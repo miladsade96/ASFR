@@ -1,6 +1,7 @@
 # import statements
 
 import os
+import eel
 import cv2
 import _csv
 import pickle
@@ -12,6 +13,9 @@ from khayyam import JalaliDate
 from typing import Tuple, List
 from concurrent.futures import ProcessPoolExecutor
 
+
+# initializing eel
+eel.init("../web")
 
 # defining global variables
 user_input = int
@@ -206,4 +210,4 @@ def stop():
 
 
 if __name__ == '__main__':
-    pass
+    eel.start("index.html")

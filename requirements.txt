@@ -2,3 +2,4 @@ setuptools>=50.3.2
 numpy>=1.19.4
 opencv-python>=4.4.0.46
 Khayyam>=3.0.17
+eel~=0.14.0
