@@ -2,6 +2,7 @@
 
 # import statement
 import os
+import _csv
 from pathlib import Path
 from khayyam import JalaliDate
 
@@ -16,3 +17,10 @@ def csv_creator():
         with open(f"../statistics/{str(JalaliDate.today())}.csv", "w") as file:
             file.writelines("Name,Time")
             file.flush()
+
+
+def csv_reader():
+    with open(f"../statistics/{str(JalaliDate.today())}.csv", "r") as file:
+        read = _csv.reader(file)
+        for row in read:
+            print(",".join(row))
