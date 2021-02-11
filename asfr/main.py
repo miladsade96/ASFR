@@ -52,7 +52,7 @@ def encoder(image):
     return encode
 
 
-def image_loader(path: str) -> Tuple[List[str], list]:
+def image_loader(path="../train_images") -> Tuple[List[str], list]:
     """
     Loading images from given directory.
     :param path: str, address of images directory
@@ -156,8 +156,7 @@ def main():
                 print(f"Your entered value is not numeric!")
 
         if user_input == 1:
-            path = input("Enter path to directory:")
-            cl_names, images_list = image_loader(path)
+            cl_names, images_list = image_loader()
             print("Loading images completed!")
         elif user_input == 2:
             with alive_bar(len(images_list)) as bar, ProcessPoolExecutor() as executor:
