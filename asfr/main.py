@@ -34,6 +34,10 @@ def csv_creator():
 
 
 def csv_reader():
+    """
+    Reads today's csv file to render it on server side by javascript
+    :return: None
+    """
     with open(f"../statistics/{str(JalaliDate.today())}.csv", "r") as file:
         read = _csv.reader(file)
         for row in read:
