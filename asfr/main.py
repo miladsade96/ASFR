@@ -1,20 +1,17 @@
 # import statements
 
-from concurrent.futures import ProcessPoolExecutor
-
-from datetime import datetime
-import numpy as np
-from alive_progress import alive_bar
-import face_recognition as fr
-
-import _csv
-from pathlib import Path
-from khayyam import JalaliDate
 import os
 import cv2
-from typing import Tuple, List
-
+import _csv
 import pickle
+import numpy as np
+from pathlib import Path
+from datetime import datetime
+import face_recognition as fr
+from khayyam import JalaliDate
+from typing import Tuple, List
+from alive_progress import alive_bar
+from concurrent.futures import ProcessPoolExecutor
 
 
 # defining global variables
