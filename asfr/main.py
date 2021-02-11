@@ -104,7 +104,7 @@ def attendance_marker(name_of_person: str) -> None:
                     latest_time = datetime.strptime(latest_time_str, fmt)
                     delta = (now_time - latest_time).total_seconds()
                     break   # breaks for loop when first wanted record is found
-            if delta > 30.0:    # if 30 seconds have elapsed since the last arrical
+            if delta > 30.0:    # if 30 seconds have elapsed since the last arrival
                 file.writelines(f"\n{name_of_person},{now_str}")
                 file.flush()
 
