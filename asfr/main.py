@@ -24,6 +24,7 @@ known_faces_encodes = []
 cl_names = []
 
 
+@eel.expose
 def image_loader(path="../train_images") -> Tuple[List[str], list]:
     """
     Loading images from given directory.
@@ -54,6 +55,7 @@ def _encoder(image):
     return encode
 
 
+@eel.expose
 def encoder():
     """
     Executes protected function for all images in train directory
@@ -65,6 +67,7 @@ def encoder():
     return known_faces_encodes
 
 
+@eel.expose
 def save_encodings(encodings: List, class_names: List):
     """
     Save encodings into a file.
@@ -93,6 +96,7 @@ def csv_creator():
             file.flush()
 
 
+@eel.expose
 def csv_reader():
     """
     Reads today's csv file to render it on server side by javascript
@@ -147,6 +151,7 @@ def attendance_marker(name_of_person: str) -> None:
 cap = cv2.VideoCapture(0)
 
 
+@eel.expose
 def recognizer():
     """Opens default camera and starts recognition process"""
     with open("../data/data_file", "rb") as file_1:
@@ -203,6 +208,7 @@ def recognizer():
         cv2.waitKey(1)
 
 
+@eel.expose
 def stop():
     """Stops capturing video"""
     cap.release()
