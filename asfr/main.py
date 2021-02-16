@@ -92,18 +92,6 @@ def csv_creator() -> None:
             file.flush()
 
 
-@eel.expose
-def csv_reader():
-    """
-    Reads today's csv file to render it on server side by javascript
-    :return: None
-    """
-    with open(f"../statistics/{str(JalaliDate.today())}.csv", "r") as file:
-        read = _csv.reader(file)
-        for row in read:
-            print(",".join(row))
-
-
 def attendance_marker(name_of_person: str) -> None:
     """
     Opens the csv file and insert the name and arrive time to file.
@@ -148,7 +136,7 @@ cap = cv2.VideoCapture(0)
 
 
 @eel.expose
-def recognizer():
+def recognizer() -> None:
     """Opens default camera and starts recognition process"""
     with open("../data/data_file", "rb") as file_1:
         my_data = pickle.loads(file_1.read())
@@ -205,7 +193,7 @@ def recognizer():
 
 
 @eel.expose
-def stop():
+def stop() -> None:
     """Stops capturing video"""
     cap.release()
     cv2.destroyAllWindows()
