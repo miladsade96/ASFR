@@ -53,15 +53,15 @@ def _encoder(image: Type[np.ndarray]) -> Type[np.ndarray]:
 
 
 @eel.expose
-def encoder():
+def encoder() -> None:
     """
     Executes protected function for all images in train directory
-    :return:
+    :return: None
     """
+    global known_faces_encodes
     with ProcessPoolExecutor() as executor:
         for enc in executor.map(_encoder, images_list):
             known_faces_encodes.append(enc)
-    return known_faces_encodes
 
 
 @eel.expose
