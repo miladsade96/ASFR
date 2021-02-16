@@ -65,19 +65,18 @@ def encoder() -> None:
 
 
 @eel.expose
-def save_encodings(encodings: List, class_names: List):
+def save() -> None:
     """
-    Save encodings into a file.
-    :param class_names: class names of images
-    :param encodings: list of generated encodings
+    Saves encodings and names into files.
     :return: None
     """
+    global known_faces_encodes, cl_names
     # opening data_file and names and pickling to them
     with open("../data/data_file", "wb") as dump:
-        dump.write(pickle.dumps(encodings))
+        dump.write(pickle.dumps(known_faces_encodes))
         dump.flush()
     with open("../data/names", "wb") as file:
-        file.write(pickle.dumps(class_names))
+        file.write(pickle.dumps(cl_names))
         file.flush()
 
 
