@@ -80,7 +80,7 @@ def save() -> None:
         file.flush()
 
 
-def csv_creator():
+def csv_creator() -> None:
     """
     Creates a csv file for today attendances.
     :return: None
