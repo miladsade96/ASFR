@@ -17,7 +17,6 @@ from concurrent.futures import ProcessPoolExecutor
 eel.init("../web")
 
 # defining global variables
-user_input = int
 images_list = []
 known_faces_encodes = []
 cl_names = []
