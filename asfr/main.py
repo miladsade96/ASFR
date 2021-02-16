@@ -3,14 +3,13 @@
 import os
 import eel
 import cv2
-import _csv
 import pickle
 import numpy as np
+from typing import Type
 from pathlib import Path
 from datetime import datetime
 import face_recognition as fr
 from khayyam import JalaliDate
-from typing import Tuple, List
 from concurrent.futures import ProcessPoolExecutor
 
 
