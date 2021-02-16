@@ -40,11 +40,11 @@ def image_loader(path="../train_images") -> None:
         cl_names.append(os.path.splitext(cl)[0])
 
 
-def _encoder(image):
+def _encoder(image: Type[np.ndarray]) -> Type[np.ndarray]:
     """
     Find encodings for each image (this is a protected function).
-    :param image: loaded image
-    :return: encode value
+    :param image: numpy ndarray, loaded image
+    :return: numpy ndarray, encode value
     """
     # convert BGR to RGB
     img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
