@@ -137,7 +137,10 @@ cap = cv2.VideoCapture(0)
 
 @eel.expose
 def recognizer() -> None:
-    """Opens default camera and starts recognition process"""
+    """
+    Opens default camera and starts recognition process
+    :return: None
+    """
     with open("../data/data_file", "rb") as file_1:
         my_data = pickle.loads(file_1.read())
     with open("../data/names", "rb") as file_2:
@@ -194,7 +197,10 @@ def recognizer() -> None:
 
 @eel.expose
 def stop() -> None:
-    """Stops capturing video"""
+    """
+    Stops capturing video
+    :return: None
+    """
     cap.release()
     cv2.destroyAllWindows()
 
