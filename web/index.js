@@ -1,6 +1,9 @@
 const date = document.querySelector("#date");
 const progress = document.querySelector("#encodeProgress");
 const video = document.querySelector("#videoElement");
+const loadButton = document.querySelector("#load");
+const encodeButton = document.querySelector("#encode");
+const saveButton = document.querySelector("#save");
 const startButton = document.querySelector("#start");
 const stopButton = document.querySelector("#stop");
 const statistics = document.querySelector(".statistics");
@@ -12,48 +15,77 @@ const dateOptions = {
   month: "long",
   day: "numeric",
 };
-date.textContent = new Date().toLocaleDateString("en-US", dateOptions);
+date.textContent = new Date().toLocaleDateString("fa-IR", dateOptions);
 
 // change progress bar value
 progress.value = 80;
 
-// webcam access grant
-if (navigator.mediaDevices.getUserMedia) {
-  navigator.mediaDevices
-    .getUserMedia({ video: true })
-    .then(function (stream) {
-      video.srcObject = stream;
-      video.load();
-      video.play();
-    })
-    .catch(function (error) {
-      console.log("Something went wrong!");
-      console.error(error);
-    });
+// will load svg file
+function loadCSVFile() {
+  // change csv file address here
+  d3.text("addresses.csv", function (data) {
+    const parsedCSV = d3.csv.parseRows(data);
+
+    d3.select(".statistics")
+      .append("table")
+      .selectAll("tr")
+      .data(parsedCSV)
+      .enter()
+      .append("tr")
+      .selectAll("td")
+      .data(function (d) {
+        return d;
+      })
+      .enter()
+      .append("td")
+      .text(function (d) {
+        return d;
+      });
+  });
 }
+
+// will fire if `load` button's click action triggered
+loadButton.addEventListener("click", function () {
+  // runs eel's image_loader function
+  eel.image_loader();
+});
+
+// will fire if `encode` button's click action triggered
+encodeButton.addEventListener("click", function () {
+  // runs eel's encoder function
+  eel.encoder();
+});
+
+// will fire if `save` button's click action triggered
+saveButton.addEventListener("click", function () {
+  // runs eel's save_encodings function
+  eel.save_encodings();
+});
 
 // will fire if `start` button's click action triggered to display csv file as a table
 startButton.addEventListener("click", function () {
   if (statistics.innerHTML === "") {
-    // change csv file address
-    d3.text("addresses.csv", function (data) {
-      const parsedCSV = d3.csv.parseRows(data);
+    // runs eel's recognizer function
+    eel.recognizer().then(function () {
+      // webcam access grant
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then(function (stream) {
+            video.srcObject = stream;
+            video.load();
+            video.play();
+          })
+          .catch(function (error) {
+            console.log("Something went wrong!");
+            console.error(error);
+          });
+      }
 
-      d3.select(".statistics")
-        .append("table")
-        .selectAll("tr")
-        .data(parsedCSV)
-        .enter()
-        .append("tr")
-        .selectAll("td")
-        .data(function (d) {
-          return d;
-        })
-        .enter()
-        .append("td")
-        .text(function (d) {
-          return d;
-        });
+      // runs eel's csv_reader function
+      eel.csv_reader().then(function () {
+        loadCSVFile();
+      });
     });
   }
 });
