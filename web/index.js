@@ -15,7 +15,7 @@ const dateOptions = {
   month: "long",
   day: "numeric",
 };
-date.textContent = new Date().toLocaleDateString("fa-IR", dateOptions);
+date.textContent = new persianDate().format("dddd, DD MMMM YYYY");
 
 // change progress bar value
 progress.value = 80;
