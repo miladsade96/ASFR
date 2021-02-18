@@ -48,11 +48,6 @@ progress {
   padding-top: 5px;
 }
 
-#date {
-  direction: rtl;
-  font-family: sahel;
-}
-
 .statistics {
   height: 50vh;
   overflow-x: auto;

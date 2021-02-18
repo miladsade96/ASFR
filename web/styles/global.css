@@ -14,6 +14,16 @@
   margin: 0;
 }
 
+@font-face {
+  font-family: Sahel;
+  src: url("./../fonts/Sahel.eot");
+  src: url("./../fonts/Sahel.eot?#iefix") format("embedded-opentype"),
+    url("./../fonts/Sahel.woff2") format("woff2"),
+    url("./../fonts/Sahel.woff") format("woff"),
+    url("./../fonts/Sahel.ttf") format("truetype");
+  font-weight: normal;
+}
+
 body,
 html {
   font-family: "Roboto", sans-serif;
@@ -125,4 +135,9 @@ p {
 
 .rounded-2 {
   border-radius: 10px;
+}
+
+#date {
+  direction: rtl;
+  font-family: "Sahel";
 }
