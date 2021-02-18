@@ -42,9 +42,8 @@ button.secondary {
 }
 
 button.small {
-  background: var(--orange);
+  background: var(--black);
   color: var(--white);
-  padding: 0.3rem 0.5rem;
 }
 
 img {
