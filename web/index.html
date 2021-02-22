@@ -26,7 +26,7 @@
           >Progress:
           <progress id="encodeProgress" max="100"></progress>
         </label>
-        <button id="load">Load</button>
+        <button id="load" onclick="loadImage()">Load</button>
         <button id="encode">Encode</button>
         <button id="save" class="small">Save</button>
       </div>
@@ -41,5 +41,11 @@
     </section>
 
     <script src="./index.js"></script>
+    <script>
+      function loadImage() {
+        // runs eel's image_loader function
+        eel.image_loader();
+      }
+    </script>
   </body>
 </html>
