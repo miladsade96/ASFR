@@ -17,8 +17,10 @@ const dateOptions = {
 };
 date.textContent = new persianDate().format("dddd, DD MMMM YYYY");
 
-// change progress bar value
-progress.value = 80;
+// will change progress bar value
+function updateProgress(value) {
+  progress.value = value;
+}
 
 // will load svg file
 function loadCSVFile() {
