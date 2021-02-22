@@ -45,12 +45,11 @@ function loadCSVFile() {
 }
 
 // will fire if `load` button's click action triggered
-// loadButton.addEventListener("click", function () {
-//   runs eel's image_loader function
-//   console.log("`load` button clicked!"); // remove this line
-//   console.log(eel);
-//   eel.image_loader();
-// });
+loadButton.addEventListener("click", function () {
+  // runs eel's image_loader function
+  console.log("`load` button clicked!"); // remove this line
+  eel.image_loader();
+});
 
 // will fire if `encode` button's click action triggered
 encodeButton.addEventListener("click", function () {
