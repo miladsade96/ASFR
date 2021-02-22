@@ -64,7 +64,7 @@ encodeButton.addEventListener("click", function () {
 saveButton.addEventListener("click", function () {
   // runs eel's save_encodings function
   console.log("`save` button clicked!"); // remove this line
-  eel.save_encodings();
+  eel.save();
 });
 
 // will fire if `start` button's click action triggered to display csv file as a table
@@ -103,4 +103,5 @@ stopButton.addEventListener("click", function () {
   const tracks = mediaStream.getTracks();
   tracks.forEach((track) => track.stop());
   video.src = "";
+  eel.stop();
 });
