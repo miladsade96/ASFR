@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles/global.css" />
     <link rel="stylesheet" href="./styles/main.css" />
     <script src="./js/d3.v3.min.js"></script>
-    <script src="./js/eel.js"></script>
+    <script src="./eel.js"></script>
     <script src="./js/persian-date.min.js"></script>
     <title>ASFR</title>
   </head>
@@ -26,7 +26,7 @@
           >Progress:
           <progress id="encodeProgress" max="100"></progress>
         </label>
-        <button id="load" onclick="loadImage()">Load</button>
+        <button id="load">Load</button>
         <button id="encode">Encode</button>
         <button id="save" class="small">Save</button>
       </div>
@@ -41,11 +41,5 @@
     </section>
 
     <script src="./index.js"></script>
-    <script>
-      function loadImage() {
-        // runs eel's image_loader function
-        eel.image_loader();
-      }
-    </script>
   </body>
 </html>
