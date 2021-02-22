@@ -47,23 +47,27 @@ function loadCSVFile() {
 // will fire if `load` button's click action triggered
 loadButton.addEventListener("click", function () {
   // runs eel's image_loader function
+  console.log("`load` button clicked!"); // remove this line
   eel.image_loader();
 });
 
 // will fire if `encode` button's click action triggered
 encodeButton.addEventListener("click", function () {
   // runs eel's encoder function
+  console.log("`encode` button clicked!"); // remove this line
   eel.encoder();
 });
 
 // will fire if `save` button's click action triggered
 saveButton.addEventListener("click", function () {
   // runs eel's save_encodings function
+  console.log("`save` button clicked!"); // remove this line
   eel.save_encodings();
 });
 
 // will fire if `start` button's click action triggered to display csv file as a table
 startButton.addEventListener("click", function () {
+  console.log("`start` button clicked!"); // remove this line
   if (statistics.innerHTML === "") {
     // runs eel's recognizer function
     eel.recognizer().then(function () {
@@ -92,6 +96,7 @@ startButton.addEventListener("click", function () {
 
 // will fire if `stop` button's click action triggered to remove video src
 stopButton.addEventListener("click", function () {
+  console.log("`stop` button clicked!"); // remove this line
   const mediaStream = video.srcObject;
   const tracks = mediaStream.getTracks();
   tracks.forEach((track) => track.stop());
