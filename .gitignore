@@ -139,7 +139,6 @@ dmypy.json
 
 /.idea/encodings.xml
 
-
 # data files
 /data/data_file
 /data/names
@@ -150,3 +149,9 @@ dmypy.json
 /.idea/pylint.xml
 /imagesAttendance
 *.jpg
+
+# editor configs
+.vscode/*
+!.vscode/settings.json
+*.dccache
+*.DS_Store
