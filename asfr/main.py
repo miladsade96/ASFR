@@ -189,10 +189,10 @@ def recognizer() -> None:
                 cv2.rectangle(img, (x_1, y_1), (x_2, y_2), (0, 0, 255), 2)
                 cv2.putText(img, "Unknown Face!", (x_1 + 6, y_2 - 6),
                             cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
-        # name of the window, image itself
-        cv2.imshow("Webcam", img)
         # display a frame for 1 ms
         cv2.waitKey(1)
+        _, jpeg = cv2.imencode(".jpg", img)
+        return jpeg.tobytes()
 
 
 @eel.expose
