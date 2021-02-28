@@ -11,6 +11,7 @@ from datetime import datetime
 import face_recognition as fr
 from khayyam import JalaliDate
 from concurrent.futures import ProcessPoolExecutor
+import base64
 
 
 # initializing eel
@@ -131,16 +132,14 @@ def attendance_marker(name_of_person: str) -> None:
                 file.flush()
 
 
-# capturing the webcam
-cap = cv2.VideoCapture(0)
-
-
 @eel.expose
 def recognizer() -> None:
     """
     Opens default camera and starts recognition process
     :return: None
     """
+    cap = cv2.VideoCapture(0)
+
     with open("../data/data_file", "rb") as file_1:
         my_data = pickle.loads(file_1.read())
     with open("../data/names", "rb") as file_2:
@@ -158,7 +157,8 @@ def recognizer() -> None:
         # finding face locations in the current frame
         faces_in_current_frame = fr.face_locations(small_image)
         # encoding faces that are located in the current frame
-        encodings_in_current_frame = fr.face_encodings(small_image, faces_in_current_frame)
+        encodings_in_current_frame = fr.face_encodings(
+            small_image, faces_in_current_frame)
 
         for encode_face, face_location in zip(encodings_in_current_frame, faces_in_current_frame):
             # comparing faces
@@ -189,8 +189,11 @@ def recognizer() -> None:
                 cv2.rectangle(img, (x_1, y_1), (x_2, y_2), (0, 0, 255), 2)
                 cv2.putText(img, "Unknown Face!", (x_1 + 6, y_2 - 6),
                             cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
-        cv2.imwrite("current_frame.jpg", img)
-        cv2.waitKey(1)
+
+        _, jpeg = cv2.imencode(".jpg", img)
+        blob = base64.b64encode(jpeg.tobytes())
+        blob = blob.decode("utf-8")
+        eel.updateImageSrc(blob)()
 
 
 @eel.expose
