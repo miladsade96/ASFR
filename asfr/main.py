@@ -202,7 +202,6 @@ def stop() -> None:
     Stops capturing video
     :return: None
     """
-    cap.release()
     cv2.destroyAllWindows()
 
 
