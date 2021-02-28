@@ -46,19 +46,6 @@ function loadCSVFile(filePath) {
   });
 }
 
-function loadImage(file) {
-  // Check if the file is an image.
-  if (file.type && file.type.indexOf("image") === -1) {
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.addEventListener("load", (event) => {
-    image.src = event.target.result;
-  });
-  reader.readAsDataURL(file);
-}
-
 // will fire if `load` button's click action triggered
 loadButton.addEventListener("click", function () {
   // runs eel's image_loader function
@@ -80,10 +67,13 @@ saveButton.addEventListener("click", function () {
 // will fire if `start` button's click action triggered to display csv file as a table
 startButton.addEventListener("click", function () {
   // runs eel's recognizer function
-  eel.recognizer().then(function (imageFile) {
-    loadImage(imageFile);
-  });
+  eel.recognizer()();
 });
+
+eel.expose(updateImageSrc);
+function updateImageSrc(val) {
+  image.src = "data:image/jpeg;base64," + val;
+}
 
 // will fire if `stop` button's click action triggered to remove video src
 stopButton.addEventListener("click", function () {
