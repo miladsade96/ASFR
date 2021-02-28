@@ -78,5 +78,5 @@ function updateImageSrc(val) {
 // will fire if `stop` button's click action triggered to remove video src
 stopButton.addEventListener("click", function () {
   image.src = "./images/blank.png";
-  // eel.stop();
+  eel.stop();
 });
