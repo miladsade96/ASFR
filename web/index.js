@@ -18,6 +18,7 @@ const dateOptions = {
 date.textContent = new persianDate().format("dddd, DD MMMM YYYY");
 
 // will change progress bar value
+eel.expose(updateProgress)
 function updateProgress(value) {
   progress.value = value;
 }
