@@ -63,6 +63,8 @@ def encoder() -> None:
     with ProcessPoolExecutor() as executor:
         for enc in executor.map(_encoder, images_list):
             known_faces_encodes.append(enc)
+            percent = (len(known_faces_encodes) / len(images_list)) * 100
+            eel.updateProgress(percent)
 
 
 @eel.expose
