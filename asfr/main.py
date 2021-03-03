@@ -5,10 +5,8 @@ from asfr.classes import ASFR
 # initializing eel
 eel.init("../web")
 
-# defining global variables
-images_list = []
-known_faces_encodes = []
-cl_names = []
+# creating asfr object
+asfr = ASFR()
 
 
 @eel.expose
