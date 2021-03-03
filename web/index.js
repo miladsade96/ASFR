@@ -50,13 +50,13 @@ function loadCSVFile(filePath) {
 // will fire if `load` button's click action triggered
 loadButton.addEventListener("click", function () {
   // runs eel's image_loader function
-  eel.image_loader();
+  eel.load();
 });
 
 // will fire if `encode` button's click action triggered
 encodeButton.addEventListener("click", function () {
   // runs eel's encoder function
-  eel.encoder();
+  eel.encode();
 });
 
 // will fire if `save` button's click action triggered
@@ -68,7 +68,7 @@ saveButton.addEventListener("click", function () {
 // will fire if `start` button's click action triggered to display csv file as a table
 startButton.addEventListener("click", function () {
   // runs eel's recognizer function
-  eel.recognizer()();
+  eel.start()();
 });
 
 eel.expose(updateImageSrc);
