@@ -49,6 +49,12 @@ progress {
   padding-top: 5px;
 }
 
+.statistics {
+  height: 50vh;
+  overflow-x: auto;
+  overflow-y: auto;
+  background: var(--grey);
+}
 
 .input {
   flex: 1;
