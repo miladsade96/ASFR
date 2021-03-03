@@ -10,33 +10,14 @@ asfr = ASFR()
 
 
 @eel.expose
-def image_loader(path="../train_images") -> None:
+def load() -> None:
     """
-    Loading images from given directory.
-    :param path: str, address of images directory
-                default value: train_images directory
+    Loading images that we are going to encode
+    Decorated function (Callable from javascript side)
     :return: None
     """
-    global images_list, cl_names
-    # Adding list of contents to a list
-    list_of_contents = os.listdir(path)
-    for cl in list_of_contents:
-        current_image = cv2.imread(f"{path}/{cl}")
-        images_list.append(current_image)
-        # dropping the file extension
-        cl_names.append(os.path.splitext(cl)[0])
-
-
-def _encoder(image: Type[np.ndarray]) -> Type[np.ndarray]:
-    """
-    Find encodings for each image (this is a protected function).
-    :param image: numpy ndarray, loaded image
-    :return: numpy ndarray, encode value
-    """
-    # convert BGR to RGB
-    img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    encode = fr.face_encodings(img)[0]
-    return encode
+    # calling image_loader method
+    asfr.image_loader()
 
 
 @eel.expose
