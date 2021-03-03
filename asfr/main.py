@@ -21,17 +21,14 @@ def load() -> None:
 
 
 @eel.expose
-def encoder() -> None:
+def encode() -> None:
     """
-    Executes protected function for all images in train directory
+    Encoding images
+    Decorated function (Callable from javascript side)
     :return: None
     """
-    global known_faces_encodes
-    with ProcessPoolExecutor() as executor:
-        for enc in executor.map(_encoder, images_list):
-            known_faces_encodes.append(enc)
-            percent = (len(known_faces_encodes) / len(images_list)) * 100
-            eel.updateProgress(percent)
+    # calling encoder method
+    asfr.encoder()
 
 
 @eel.expose
