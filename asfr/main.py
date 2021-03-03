@@ -1,18 +1,6 @@
 # import statements
-
-import os
 import eel
-import cv2
-import pickle
-import numpy as np
-from typing import Type
-from pathlib import Path
-from datetime import datetime
-import face_recognition as fr
-from khayyam import JalaliDate
-from concurrent.futures import ProcessPoolExecutor
-import base64
-
+from asfr.classes import ASFR
 
 # initializing eel
 eel.init("../web")
