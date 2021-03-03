@@ -34,68 +34,12 @@ def encode() -> None:
 @eel.expose
 def save() -> None:
     """
-    Saves encodings and names into files.
+    Saving generated encodes
+    Decorated function (Callable from javascript side)
     :return: None
     """
-    global known_faces_encodes, cl_names
-    # opening data_file and names and pickling to them
-    with open("../data/data_file", "wb") as dump:
-        dump.write(pickle.dumps(known_faces_encodes))
-        dump.flush()
-    with open("../data/names", "wb") as file:
-        file.write(pickle.dumps(cl_names))
-        file.flush()
-
-
-def csv_creator() -> None:
-    """
-    Creates a csv file for today attendances.
-    :return: None
-    """
-    Path("../statistics").mkdir(parents=True, exist_ok=True)
-    if not os.path.exists(f"../statistics/{str(JalaliDate.today())}.csv"):
-        with open(f"../statistics/{str(JalaliDate.today())}.csv", "w") as file:
-            file.writelines("Name,Time")
-            file.flush()
-
-
-def attendance_marker(name_of_person: str) -> None:
-    """
-    Opens the csv file and insert the name and arrive time to file.
-    :param name_of_person: str, name of the person whom recognized
-                            by the algorithm
-    :return: None
-    """
-    fmt = "%H:%M:%S"    # time format
-    with open(f"../statistics/{str(JalaliDate.today())}.csv", "r+") as file:
-        my_data_list = file.readlines()
-        # declaring two empty lists to store previous records
-        names = []
-        times = []
-        for line in my_data_list[1:]:   # skipping first row(Name,Time)
-            line = line.strip()     # skipping new line character
-            entry = line.split(",")
-            names.append(entry[0])
-            times.append(entry[1])
-        if name_of_person not in names:
-            now = datetime.now()
-            date_string = now.strftime(fmt)
-            file.writelines(f"\n{name_of_person},{date_string}")
-            file.flush()
-        else:
-            # When name of person previously stored in csv file
-            now = datetime.now()
-            now_str = datetime.strftime(now, fmt)
-            now_time = datetime.strptime(now_str, fmt)
-            for name, time in zip(list(reversed(names)), list(reversed(times))):
-                if name == name_of_person:
-                    latest_time_str = time.strip()
-                    latest_time = datetime.strptime(latest_time_str, fmt)
-                    delta = (now_time - latest_time).total_seconds()
-                    break   # breaks for loop when first wanted record is found
-            if delta > 30.0:    # if 30 seconds have elapsed since the last arrival
-                file.writelines(f"\n{name_of_person},{now_str}")
-                file.flush()
+    # calling save method
+    asfr.save()
 
 
 @eel.expose
