@@ -56,10 +56,12 @@ def start() -> None:
 @eel.expose
 def stop() -> None:
     """
-    Stops capturing video
+    Stopping recognizing process
+    Decorated function (Callable from javascript side)
     :return: None
     """
-    cv2.destroyAllWindows()
+    # calling stop method
+    asfr.stop()
 
 
 if __name__ == '__main__':
