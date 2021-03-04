@@ -15,6 +15,30 @@ We used [Eel][eel] package to make connections between frontend and backend.
 * [face-recognition][face-recognition-pypi] >= 1.3.0
 * [opencv-python][opencv-python-pypi] >= 4.4.0.46
 
+## Getting started and run
+First of all you should clone the project on your local machine inorder to run
+it:  
+```shell
+git clone https://github.com/EverLookNeverSee/ASFR.git
+```
+navigate to project root directory:  
+```shell
+cd ASFR/
+```
+install all requirements using pip:
+```shell
+python -m pip install -r requirements.txt
+```
+navigate to asfr subdirectory:
+```shell
+cd asfr/
+```
+and then run the program using command below:
+```shell
+python main.py
+```
+command above will fire up the program and its gui will appear on the screen.
+
 
 [python]: https://python.org
 [javascript]: https://javascript.com
