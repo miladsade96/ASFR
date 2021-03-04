@@ -6,6 +6,10 @@ This project is built using python and javascript programming languages
 ([python][python] for backend and [javascript][javascript] for frontend and gui).
 We used [Eel][eel] package to make connections between frontend and backend.
 
+## Authors
+Milad Sadeghi DM - initial work - @[EverLookNeverSee][github-profile]  
+See also the list of [contributors][contributors] who participated in this project.
+
 ## Requirements
 * [eel][eel-pypi] >= 0.14.0
 * [pytest][pytest-pypi] >= 6.2.2
@@ -41,6 +45,7 @@ python main.py
 command above will fire up the program and its gui will appear on the screen.
 
 
+[github-profile]: https://github.com/EverLookNeverSee
 [python]: https://python.org
 [javascript]: https://javascript.com
 [eel]: https://github.com/ChrisKnott/Eel
@@ -52,3 +57,4 @@ command above will fire up the program and its gui will appear on the screen.
 [setuptools-pypi]: https://pypi.org/project/setuptools/
 [opencv-python-pypi]: https://pypi.org/project/opencv-python/
 [face-recognition-pypi]: https://pypi.org/project/face-recognition/
+[contributors]: https://github.com/EverLookNeverSee/ASFR/graphs/contributors
