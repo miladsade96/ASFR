@@ -1,4 +1,5 @@
-# ASFR [![CodeFactor](https://www.codefactor.io/repository/github/everlookneversee/asfr/badge)](https://www.codefactor.io/repository/github/everlookneversee/asfr)
+![](logo.png)
+[![CodeFactor](https://www.codefactor.io/repository/github/everlookneversee/asfr/badge)](https://www.codefactor.io/repository/github/everlookneversee/asfr)
 
 ## Attendance system using facial recognition
 This project is built using python and javascript programming languages
