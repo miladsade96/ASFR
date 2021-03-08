@@ -9,7 +9,7 @@ section {
 }
 
 section.header {
-  background: var(--grey);
+  background: #2784c736;
   border-radius: 10px;
 }
 
@@ -37,6 +37,7 @@ img {
 }
 
 label {
+  font-family: "Sahel";
   font-size: 0.833rem;
   display: flex;
   flex-direction: column;
@@ -65,7 +66,11 @@ progress {
 
 .logo {
   line-height: 1.6;
-  color: var(--orange);
+  color: #5869e4;
+}
+
+.Seal{
+  background-color:transparent !important;
 }
 
 table {

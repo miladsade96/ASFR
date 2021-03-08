@@ -44,6 +44,7 @@ button {
   padding: 0.6rem 1rem;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Sahel";
 }
 
 button.secondary {
