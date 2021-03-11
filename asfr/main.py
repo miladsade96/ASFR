@@ -1,6 +1,6 @@
 # import statements
 import eel
-from asfr.classes import ASFR
+from classes import ASFR
 
 # initializing eel
 eel.init("../web")
