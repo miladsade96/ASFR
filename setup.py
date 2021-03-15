@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="ASFR",
-    version="1.3.4",
+    version="1.3.5",
     author="Milad Sadeghi DM",
     author_email="EverLookNeverSee@ProtonMail.ch",
     description="Attendance system using facial recognition",
