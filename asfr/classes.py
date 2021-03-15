@@ -53,7 +53,7 @@ class ASFR(object):
         Executes protected function for all images in train directory
         :return: None
         """
-        percent = 0     # default percentage value
+        eel.updateProgress(0)     # default percentage value
         with ProcessPoolExecutor() as executor:
             for enc in executor.map(self._encoder, self.images_list):
                 self.known_faces_encodes.append(enc)
