@@ -153,7 +153,7 @@ class ASFR(object):
 
             for encode_face, face_location in zip(encodings_in_current_frame, faces_in_current_frame):
                 # comparing faces
-                matches = fr.compare_faces(my_data, encode_face)
+                matches = fr.compare_faces(my_data, encode_face, tolerance=0.54)
                 # calculating the distance
                 face_distance = fr.face_distance(my_data, encode_face)
                 # finding the index of minimum value (correct encoding)
