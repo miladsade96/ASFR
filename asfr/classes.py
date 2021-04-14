@@ -138,6 +138,7 @@ class ASFR(object):
         # creating a csv file
         self.csv_creator()
         self.stream = True
+        self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 3)
 
         while self.stream is True:
             _, img = self.cap.read()  # _: True if the frame is read correctly, otherwise False
